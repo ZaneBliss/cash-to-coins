@@ -1,4 +1,4 @@
-const dollarAmount = 10.55;
+const dollarAmount = 8.81;
 const piggyBank = {
     quarters: 0,
     dimes: 0,
@@ -9,11 +9,17 @@ const piggyBank = {
 const dollarsToCoins = dollarAmount => {
     splitPlaces = dollarAmount.toString().split(".")
     piggyBank.quarters = splitPlaces[0] * 4;
-    console.log(splitPlaces);
-    if (splitPlaces[1] % 1 === 0) {
-        piggyBank.dimes = parseInt(splitPlaces[1]);
-    } else if (splitPlaces[1] % 5 === )
-    // piggyBank.pennies = parseInt(splitPlaces[splitPlaces.length-1])
+    if (splitPlaces[1][0] % 10 == splitPlaces[1][0]) {
+        piggyBank.dimes = parseInt(splitPlaces[1][0]);
+    }
+    if (splitPlaces[1][1] % 5 == 0 || splitPlaces[1][1] >= 5) {
+        piggyBank.nickels = parseInt(splitPlaces[1][1]/5)
+    }
+    if (splitPlaces[1][1] < 5) {
+        piggyBank.pennies = parseInt(splitPlaces[1][1])
+    } else if (splitPlaces[1][1] > 5) {
+        piggyBank.pennies = parseInt(splitPlaces[1][1] - 5)
+    }
 }
 
 dollarsToCoins(dollarAmount)
